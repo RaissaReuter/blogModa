@@ -1,0 +1,364 @@
+:root {
+    --primary-red: #F05454; /* Coral red from design */
+    --primary-red-light: #f8a5a5;
+    --dark-text: #333333;
+    --light-gray-bg: #f8f9fa; /* Bootstrap light gray */
+    --body-font: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: var(--body-font);
+    color: #555;
+    line-height: 1.7;
+}
+
+.logo {
+    font-family: var(--body-font);
+    font-weight: 900; /* Extra Bold or Black */
+    font-size: 2.2rem;
+    color: var(--dark-text) !important;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 400;
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--primary-red);
+}
+
+.bg-light-custom {
+    background-color: #fdfdfd !important; /* Slightly off-white, almost white */
+    border-bottom: 1px solid #eee;
+}
+
+
+#hero {
+    height: 100vh; /* Ocupa 100% da altura da viewport */
+    width: 100%;   /* Ocupa 100% da largura da viewport */
+    background-image: url('../assets/img/Fashion..png'); /* <<<<<< ATUALIZE AQUI O CAMINHO DA SUA IMAGEM */
+    background-size: cover; /* Faz a imagem cobrir toda a área, cortando se necessário */
+    background-position: center center; /* Centraliza a imagem */
+    background-repeat: no-repeat;
+   
+}
+
+
+.hero-text-overlay {
+    position: absolute; /* Mantém o posicionamento absoluto */
+    /* Ajuste o posicionamento conforme o design original sobre a imagem de tela cheia */
+    bottom: 5vh; /* Exemplo: 5% da altura da viewport a partir de baixo */
+    right: 5vw;  /* Exemplo: 5% da largura da viewport a partir da direita */
+    font-size: 7rem; /* Ajuste o tamanho da fonte se necessário */
+    font-weight: 900;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5); /* Sombra pode precisar de ajuste */
+    line-height: 1;
+    z-index: 10;
+    text-align: right; /* Se o texto deve alinhar à direita dentro do seu container implícito */
+}
+
+
+/* Responsive Adjustments para o hero-text-overlay */
+@media (max-width: 991.98px) {
+    .hero-text-overlay {
+        font-size: 5rem; /* Ajuste para telas menores */
+        bottom: 4vh;
+        right: 4vw;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-text-overlay {
+        font-size: 3.5rem; /* Ajuste para telas mobile */
+        text-align: center; /* Centraliza em mobile como no design original */
+        right: 0;
+        left: 0;
+        bottom: 5vh; /* Um pouco mais de espaço em baixo */
+        padding: 0 15px; /* Para não colar nas bordas */
+    }
+}
+
+/* Sections General */
+.section-title {
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.btn-dark-custom {
+    background-color: var(--dark-text);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-dark-custom:hover {
+    background-color: #555;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.grayscale {
+    filter: grayscale(100%);
+}
+
+
+.texture-image-bg {
+    background-color: var(--primary-red);
+    padding: 20px; /* Espaçamento interno vermelho ao redor da imagem */
+    display: block;
+    width: 100%; 
+    max-width: 400px; 
+                      
+    margin-left: 0; 
+    margin-right: auto;
+    aspect-ratio: 1 / 1; /* FORÇA O ELEMENTO A SER UM QUADRADO (largura:altura = 1:1) */
+    overflow: hidden; 
+}
+
+.texture-image-bg img {
+    display: block;
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+}
+
+/* Ajustes responsivos para a seção #entre-tons */
+
+/* Coluna da imagem em #entre-tons */
+#entre-tons .order-lg-1 { 
+    margin-bottom: 2rem; /
+}
+
+/* Coluna do texto em #entre-tons */
+#entre-tons .order-lg-2 { 
+    text-align: center;
+}
+    #entre-tons .order-lg-2 {
+        text-align: left; 
+    }
+
+
+/* Cool & Clean Section */
+#cool-clean img {
+    object-fit: cover;
+    height: 350px; 
+}
+
+
+/* Style Showcase Section */
+.showcase-title {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#style-showcase-fullwidth .container-fluid {
+    max-width: 1600px;
+}
+
+#style-showcase-fullwidth .section-subtitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 1rem; /* Reduzi um pouco para o título ficar mais próximo das peças */
+    text-transform: uppercase;
+}
+
+.casual-look-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* MANTIDO O GAP MAIOR ENTRE LOOK E PEÇAS */
+    height: 60vh;
+    min-height: 400px;
+    max-height: 550px;
+}
+
+.casual-look-main {
+    /* A proporção do flex-basis deve corresponder à col-lg-* do título "Look" */
+    flex: 0 0 50%; /* Ex: Se o título "Look" está em col-lg-6 (50% de 12), aqui deve ser 50% */
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.casual-look-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+}
+
+.casual-look-pieces.horizontal-pieces-centered {
+    /* A proporção do flex-basis deve corresponder à col-lg-* do título "Peças" */
+    flex: 1; /* Ou flex: 0 0 50%; se o título "Peças" está em col-lg-6 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem; /* AUMENTEI O GAP ENTRE AS PEÇAS */
+}
+
+.horizontal-pieces-centered .piece-item {
+    width: 200px;  
+    height: 200px; /* Deve ser igual à largura para manter quadrado */
+    object-fit: contain;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    background-color: #ffffff;
+}
+
+.btn-link-custom {
+    color: var(--dark-text);
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 15px;
+    border: 1px solid var(--dark-text);
+    border-radius: 2px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn-link-custom:hover {
+    background-color: var(--dark-text);
+    color: white;
+}
+
+.article-main-title {
+    font-weight: 700;
+    color: var(--dark-text);
+    font-size: 2.5rem;
+}
+
+.article-subtitle {
+    font-weight: 700;
+    color: var(--dark-text);
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.article-subtitle-small {
+    font-weight: 700;
+    color: var(--dark-text);
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.article-content p {
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    color: #666;
+}
+
+.article-content ul.list-styled {
+    list-style: none;
+    padding-left: 0;
+}
+.article-content ul.list-styled li {
+    padding-left: 1.5em;
+    position: relative;
+    margin-bottom: 0.5em;
+}
+.article-content ul.list-styled li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-red);
+    font-weight: bold;
+}
+
+
+.sticky-image {
+    position: sticky;
+    top: 100px; 
+    align-self: flex-start; 
+}
+
+
+/* Fade-in Animation */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .hero-text-overlay {
+        font-size: 4rem;
+        bottom: 10px;
+        right: 3%;
+    }
+    .texture-image-bg {
+        padding: 20px;
+        margin: 0 auto; /* Center on smaller screens */
+        max-width: 90%;
+    }
+    .texture-image-bg img {
+        max-width: 100%;
+    }
+    .article-main-title {
+        font-size: 2rem;
+    }
+    .sticky-image { 
+        position: static;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .logo {
+        font-size: 1.8rem;
+    }
+    .hero-text-overlay {
+        font-size: 2.5rem;
+        text-align: center;
+        right: 0;
+        left:0;
+        bottom: 5px;
+    }
+    .section-title {
+        padding-top: 50px;
+        font-size: 1.6rem;
+    }
+    #cool-clean img {
+        height: 250px;
+    }
+    .product-item {
+        height: 200px; 
+        margin-bottom: 1rem;
+    }
+    .article-main-title {
+        font-size: 1.8rem;
+    }
+     .article-subtitle {
+        font-size: 1.5rem;
+    }
+    .article-subtitle-small {
+        font-size: 1.1rem;
+    }
+    #article-content py-5 {
+        text-align: center;
+    }
+}
