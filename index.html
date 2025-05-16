@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" ng-app="blog">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <title>Fashion. - Blog</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        angular.module('blog', [])
+            .controller('Rest', function ($scope, $http) {
+                $http.get('https://api-fake-blog.onrender.com/postagens')
+                    .success(function (data) {
+                        $scope.publicacoes = data;
+                    })
+                    .error(function (error) {
+                        console.error('Erro ao carregar as postagens:', error);
+                    });
+            });
+    </script>
 </head>
 <body>
 
@@ -39,31 +52,32 @@
         </nav>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-       <section id="hero" class="position-relative overflow-hidden d-flex align-items-center justify-content-center">
-</section>
+    <main role="main">
+        <section id="hero" class="position-relative overflow-hidden d-flex align-items-center justify-content-center">
+        </section>
 
-      <section id="entre-tons" class="py-5 fade-in-section">
+        <section id="entre-tons" class="py-5 fade-in-section" ng-controller="Rest">
     <div class="container">
-        <div class="row align-items-center">
-            <!-- Coluna da Imagem (Primeiro no DOM para mobile, order-lg-1 para desktop) -->
-            <div class="col-lg-6 order-lg-1">
-                <div class="texture-image-bg">
-                    <img src="assets/img/lay3.jpg" alt="Modelo em paisagem preto e branco" class="img-fluid grayscale">
+        <h2 class="section-title mb-4">Últimas Postagens</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" ng-repeat="publicacao in publicacoes">
+                <div class="card h-100 shadow-sm">
+                    <img ng-src="{{ publicacao.thumbImage }}" alt="{{ publicacao.title }}" class="card-img-top rounded">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ publicacao.title }}</h5>
+                        <p class="card-text text-muted">{{ publicacao.description }}</p>
+                        <p class="card-text">{{ publicacao.contentSnippet }}</p>
+                        <a href="artigo.html?id1={{ publicacao.id }}" class="btn btn-dark-custom btn-sm">Leia Mais</a>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <small class="text-muted">Publicado em: {{ publicacao.date }}</small>
+                    </div>
                 </div>
-            </div>
-            <!-- Coluna do Texto (Depois no DOM para mobile, order-lg-2 para desktop) -->
-            <div class="col-lg-6 order-lg-2 ps-lg-5">
-                <h2 class="section-title">Entre Tons e Texturas: A Nova Leveza</h2>
-                <p class="text-muted mb-4">Sinta a harmonia entre formas fluidas e tons neutros. Uma inspiração para vestir a delicadeza em todo detalhe e encontrar beleza no essencial.</p>
-                <a href="artigo.html" class="btn btn-dark-custom">Leia Mais</a>
             </div>
         </div>
     </div>
 </section>
 
-        <!-- Cool & Clean Section -->
         <section id="cool-clean" class="py-5 bg-light-custom fade-in-section">
             <div class="container">
                 <div class="row align-items-center">
@@ -86,36 +100,35 @@
             </div>
         </section>
 
-<!-- FULL WIDTH CASUAL STYLE & ON TREND SECTION -->
-<section id="style-showcase-fullwidth" class="py-5 fade-in-section">
-    <div class="container-fluid px-md-5">
-        <div class="row mb-3 align-items-end"> <!-- align-items-end para alinhar títulos na base se tiverem alturas diferentes -->
-            <!-- Coluna do título "Look" alinhada com a imagem do look -->
-            <div class="col-lg-6"> <!-- Ajuste a proporção se mudou a da imagem do look -->
-                <h3 class="showcase-title section-subtitle">Look</h3>
-            </div>
-            <!-- Coluna do título "Peças" alinhada e centralizada com o bloco de peças -->
-            <div class="col-lg-6 text-lg-center"> <!-- text-lg-center para centralizar em telas LG e maiores -->
-                <h3 class="showcase-title section-subtitle">Peças</h3>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 mb-5">
-                <div class="casual-look-container">
-                    <div class="casual-look-main">
-                        <img src="assets/img/lookcompleto.jpg" alt="Look Completo">
+        <section id="style-showcase-fullwidth" class="py-5 fade-in-section">
+            <div class="container-fluid px-md-5">
+                <div class="row mb-3 align-items-end">
+                    <div class="col-lg-6">
+                        <h3 class="showcase-title section-subtitle">Look</h3>
                     </div>
-                    <div class="casual-look-pieces horizontal-pieces-centered">
-                        <img src="assets/img/jaqueta.jpg" alt="Jaqueta" class="piece-item">
-                        <img src="assets/img/bolsa.jpg" alt="Bolsa" class="piece-item">
-                        <img src="assets/img/blusa.jpg" alt="Blusa" class="piece-item">
+                    <div class="col-lg-6 text-lg-center">
+                        <h3 class="showcase-title section-subtitle">Peças</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 mb-5">
+                        <div class="casual-look-container">
+                            <div class="casual-look-main">
+                                <img src="assets/img/lookcompleto.jpg" alt="Look Completo">
+                            </div>
+                            <div class="casual-look-pieces horizontal-pieces-centered">
+                                <img src="assets/img/jaqueta.jpg" alt="Jaqueta" class="piece-item">
+                                <img src="assets/img/bolsa.jpg" alt="Bolsa" class="piece-item">
+                                <img src="assets/img/blusa.jpg" alt="Blusa" class="piece-item">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+    </main>
+
     <footer class="py-4 bg-dark text-center text-white-50">
         <div class="container">
             <p class="mb-0">© 2023 Fashion. Todos os direitos reservados.</p>
@@ -124,5 +137,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+
 </body>
 </html>
